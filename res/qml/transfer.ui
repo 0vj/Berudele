@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dialog</class>
+ <widget class="QDialog" name="dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>614</width>
+    <height>369</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Berudele</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_6">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="tables_groupBox">
+     <property name="title">
+      <string>SQLite Tables:</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="0">
+       <widget class="QListWidget" name="tables_listWidget">
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="preview_pushButton">
+        <property name="text">
+         <string>Preview</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="select_all_checkBox">
+        <property name="text">
+         <string>Select all</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="settings_groupBox">
+     <property name="title">
+      <string>Settings:</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="6" column="0">
+       <widget class="QCheckBox" name="vacuum_checkBox">
+        <property name="text">
+         <string>Vacuum</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QLabel" name="integer_type_label">
+          <property name="text">
+           <string>MySQL default integer field type:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="integer_type_comboBox">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="editable">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>Default</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TINYINT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SMALLINT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MEDIUMINT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>INT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BIGINT</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="string_type_comboBox">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="editable">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>Default</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>CHAR</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>VARCHAR</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BINARY</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>VARBINARY</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TINYBLOB</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TINYTEXT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TEXT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BLOB</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MEDIUMTEXT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MEDIUMBLOB</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>LONGTEXT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>LONGBLOB</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="string_type_label">
+          <property name="text">
+           <string>MySQL default string field type:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="chunk_label">
+          <property name="text">
+           <string>Chunk reading/writing SQL records:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="chunk_spinBox">
+          <property name="maximum">
+           <number>999999999</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="foreign_keys_checkBox">
+        <property name="text">
+         <string>Do not transfer foreign keys</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="full_text_checkBox">
+        <property name="text">
+         <string> Use FULLTEXT indexes on TEXT columns</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="log_label">
+          <property name="text">
+           <string>Log:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="log_lineEdit">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QToolButton" name="log_toolButton">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="5" column="0">
+       <widget class="QCheckBox" name="rowid_checkBox">
+        <property name="text">
+         <string>Transfer rowid columns</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="buffered_checkBox">
+        <property name="text">
+         <string>Use MySQLCursorBuffered for reading the MySQL database</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="0" column="3">
+      <widget class="QPushButton" name="close_pushButton">
+       <property name="text">
+        <string>Close</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="about_pushButton">
+       <property name="text">
+        <string>About...</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="transfer_pushButton">
+       <property name="text">
+        <string>Transfer</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>select_all_checkBox</tabstop>
+  <tabstop>tables_listWidget</tabstop>
+  <tabstop>preview_pushButton</tabstop>
+  <tabstop>log_lineEdit</tabstop>
+  <tabstop>log_toolButton</tabstop>
+  <tabstop>integer_type_comboBox</tabstop>
+  <tabstop>string_type_comboBox</tabstop>
+  <tabstop>chunk_spinBox</tabstop>
+  <tabstop>full_text_checkBox</tabstop>
+  <tabstop>buffered_checkBox</tabstop>
+  <tabstop>foreign_keys_checkBox</tabstop>
+  <tabstop>rowid_checkBox</tabstop>
+  <tabstop>vacuum_checkBox</tabstop>
+  <tabstop>transfer_pushButton</tabstop>
+  <tabstop>about_pushButton</tabstop>
+  <tabstop>close_pushButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
