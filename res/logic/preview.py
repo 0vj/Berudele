@@ -23,9 +23,9 @@ def init(dialog, self, parent, table):
 
 
 def fetch_table(dialog, self, table):
-    """Based on the chosen table name, fetches the 
-    corresponding data. I used a separate thread to 
-    fetch data from the MySQL database, as it might be 
+    """Based on the chosen table name, fetches the
+    corresponding data. I used a separate thread to
+    fetch data from the MySQL database, as it might be
     an IO-bound process.
     """
     sql_fetch_all = 'select * from {};'.format(table)
@@ -39,8 +39,8 @@ def fetch_table(dialog, self, table):
     else:
         sql = 'SHOW COLUMNS FROM {};'.format(table)
         self.fetch_table_thread = FetchTable(
-            self.mysql_cur, 
-            sql, 
+            self.mysql_cur,
+            sql,
             sql_fetch_all
             )
         self.fetch_table_thread.start()
@@ -88,12 +88,12 @@ class FetchTable(QtCore.QThread):
         rows_sql: The SQL command to fetch the rows of the table.
 
     Methods:
-        run: An overridden method, which runs by calling the 
+        run: An overridden method, which runs by calling the
           start method on an instance of the QThread class.
 
     Signals:
-        result: A tuple with two lists, the first one contains the 
-          names of the columns and the second one, contains the rows of the 
+        result: A tuple with two lists, the first one contains the
+          names of the columns and the second one, contains the rows of the
           table => ([h0, h1, ..., hN], [(c1, c2, ..., cN)])
         error: A string that reports the problems of the process.
     """
@@ -105,7 +105,7 @@ class FetchTable(QtCore.QThread):
         self.cur = cur
         self.header_sql = header_sql
         self.rows_sql = rows_sql
-    
+
     def run(self):
         try:
             self.cur.execute(self.header_sql)

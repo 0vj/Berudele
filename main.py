@@ -62,8 +62,8 @@ def show_hide_password(dialog, self):
         self.visible = True
     icon = QtGui.QIcon()
     icon.addPixmap(
-        QtGui.QPixmap(icon_path), 
-        QtGui.QIcon.Normal, 
+        QtGui.QPixmap(icon_path),
+        QtGui.QIcon.Normal,
         QtGui.QIcon.Off
         )
     self.show_hide_password_pushButton.setIcon(icon)
@@ -75,7 +75,7 @@ def open_sqlite(dialog, self):
         clicked signal of sqlite_toolButton.
     """
     sqlite_database = QtWidgets.QFileDialog.getOpenFileName(
-        dialog, 
+        dialog,
         caption='Open Image',
         filter='All Files(*)',
         )[0].strip()
@@ -85,17 +85,17 @@ def open_sqlite(dialog, self):
 
 def connect_to_mysql(dialog, self):
     """Trying to connect to the MySQL database using the provided data.
-    For connecting to the MySQL database, I used a thread because, 
-    in low-speed connections or when providing wrong data, 
+    For connecting to the MySQL database, I used a thread because,
+    in low-speed connections or when providing wrong data,
     the GUI will be frozen.
-    
+
     Connected to:
         clicked signal of connect_pushButton.
 
     Signals:
-        connected: After a successful connection, 
+        connected: After a successful connection,
           this signal emits a list with two objects: [conn, cur].
-        error: When an error occurred during connection to the server, 
+        error: When an error occurred during connection to the server,
           this signal is emitted.
     """
     self.connect_pushButton.setDisabled(True)
@@ -105,16 +105,16 @@ def connect_to_mysql(dialog, self):
     password = self.password_lineEdit.text()
     database = self.database_lineEdit.text()
     self.mysql_information = {
-        'host':host,
-        'port':port,
-        'username':username,
-        'password':password,
-        'database':database
+        'host': host,
+        'port': port,
+        'username': username,
+        'password': password,
+        'database': database
         }
     self.mysql_thread = ConnectToMySQL(self.mysql_information)
     self.mysql_thread.start()
     self.mysql_thread.connected.connect(
-        lambda conn_cur: 
+        lambda conn_cur:
         connected_to_mysql(dialog, self, conn_cur)
         )
     self.mysql_thread.error.connect(
@@ -133,7 +133,7 @@ def mysql_error_handler(dialog, self, error):
 
 
 def connected_to_mysql(dialog, self, conn_cur):
-    """This function runs when a successful 
+    """This function runs when a successful
     MySQL database connection is established.
     Then calls the connect_to_sqlite function,
     in order to validate the SQLite database.
@@ -188,7 +188,7 @@ def check_sqlite(sqlite_database):
     """
     if os.path.isfile(sqlite_database):
         if os.path.getsize(sqlite_database) > 100:
-            with open(sqlite_database,'r', encoding="ISO-8859-1") \
+            with open(sqlite_database, 'r', encoding="ISO-8859-1") \
                  as sqlite_file:
                 header = sqlite_file.read(100)
                 if header.startswith('SQLite format 3'):
@@ -199,8 +199,8 @@ def check_sqlite(sqlite_database):
 
 class ConnectToMySQL(QtCore.QThread):
     """A sub-class of the QThread class which establishes
-    a MySQL connection, as connecting to a remote server 
-    might be a slow process, I used a thread to handle it 
+    a MySQL connection, as connecting to a remote server
+    might be a slow process, I used a thread to handle it
     and prevent the GUI to freeze.
 
     Signals:
@@ -221,16 +221,16 @@ class ConnectToMySQL(QtCore.QThread):
         self.database = mysql_information['database']
         self.timeout = 5
         self.conn = ''
-    
+
     def run(self):
         try:
             self.conn = mysql.connector.connect(
-                host = self.host,
-                port = self.port,
-                user = self.username,
-                password = self.password,
-                database = self.database,
-                connection_timeout= self.timeout
+                host=self.host,
+                port=self.port,
+                user=self.username,
+                password=self.password,
+                database=self.database,
+                connection_timeout=self.timeout
                 )
             if self.conn.is_connected():
                 self.cur = self.conn.cursor()

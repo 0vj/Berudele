@@ -61,7 +61,7 @@ def init(dialog, self, parent):
 
 
 def preview(dialog, self):
-    """Launches the preview dialog and shows 
+    """Launches the preview dialog and shows
     a preview of the chosen table.
     """
     self.preview_pushButton.setDisabled(True)
@@ -71,18 +71,18 @@ def preview(dialog, self):
 
 
 def save_log(dialog, self):
-    """Launches a dialog and asks for the destination of the 
+    """Launches a dialog and asks for the destination of the
     log file.
     """
     destination = QtWidgets.QFileDialog.getSaveFileName(
-        dialog, 
+        dialog,
         caption='Save...',
         directory='log.txt',
         filter='All Files(*)',
         )[0].strip()
     if destination != '':
         self.log_lineEdit.setText(destination)
-    
+
 
 def load_sqlite_tables(dialog, self):
     """Fetches the names of the tables of the SQLite database.
@@ -135,14 +135,14 @@ def load_mysql_tables(dialog, self, tables):
 
 
 def transfer_thread(dialog, self, parent):
-    """As transferring is an IO-bound process, 
-    so in this function, I created an instance of 
-    the Transfer class that handles the process in 
+    """As transferring is an IO-bound process,
+    so in this function, I created an instance of
+    the Transfer class that handles the process in
     a separate thread and prevents the GUI to freeze.
 
     Signals:
-        status: Emits a string which might be a an error 
-          or `transferred` which means, the process has 
+        status: Emits a string which might be a an error
+          or `transferred` which means, the process has
           been successfully completed.
     """
     full_text = self.full_text_checkBox.isChecked()
@@ -161,23 +161,23 @@ def transfer_thread(dialog, self, parent):
         string = ' VARCHAR(255)'
     if tables != []:
         info = {
-            'full_text':full_text,
-            'chunk':chunk,
-            'foreign':foreign,
-            'rowid':rowid,
-            'log':log,
-            'integer':integer,
-            'string':string,
-            'tables':tables,
-            'vacuum':vacuum,
-            'mode':self.mode,
-            'username':parent.mysql_information['username'],
-            'password':parent.mysql_information['password'],
-            'database':parent.mysql_information['database'],
-            'host':parent.mysql_information['host'],
-            'port':parent.mysql_information['port'],
-            'sqlite_database':self.sqlite_database,
-            'buffered':buffered
+            'full_text': full_text,
+            'chunk': chunk,
+            'foreign': foreign,
+            'rowid': rowid,
+            'log': log,
+            'integer': integer,
+            'string': string,
+            'tables': tables,
+            'vacuum': vacuum,
+            'mode': self.mode,
+            'username': parent.mysql_information['username'],
+            'password': parent.mysql_information['password'],
+            'database': parent.mysql_information['database'],
+            'host': parent.mysql_information['host'],
+            'port': parent.mysql_information['port'],
+            'sqlite_database': self.sqlite_database,
+            'buffered': buffered
             }
         self.transfer_thread = Transfer(info)
         self.transfer_thread.start()
@@ -190,9 +190,9 @@ def transfer_thread(dialog, self, parent):
 
 
 def transferred(dialog, self, status):
-    """This function is called when the status signal 
-    of the self.transfer_thread instance is emitted. 
-    Shows a message which indicates the status of the 
+    """This function is called when the status signal
+    of the self.transfer_thread instance is emitted.
+    Shows a message which indicates the status of the
     transferring process.
     """
     if status == 'transferred':
@@ -229,12 +229,12 @@ def get_tables(dialog, self):
 
 
 class Transfer(QtCore.QThread):
-    """A separate thread that handles the process 
+    """A separate thread that handles the process
     of transferring and prevents the GUI to freeze.
 
     Args:
         info: A dictionary of information to create
-          `converter` instances from the two classes 
+          `converter` instances from the two classes
           SQLite3toMySQL and MySQLtoSQLite.
 
     Methods:
@@ -246,11 +246,11 @@ class Transfer(QtCore.QThread):
             Returns: A converter instance to transfer
               tables from a MySQL database to a SQLite
               database.
-        run: An overridden method, which runs by calling the 
+        run: An overridden method, which runs by calling the
           start method on an instance of the QThread class.
 
     Signals:
-        status: Emits a string that indicates the status 
+        status: Emits a string that indicates the status
           of the transferring process.
     """
     status = QtCore.pyqtSignal(str)
@@ -293,7 +293,7 @@ class Transfer(QtCore.QThread):
             log_file=self.log
             )
         return converter
-    
+
     def mysql_to_sqlite(self):
         converter = mysql_to_sqlite3.MySQLtoSQLite(
             sqlite_file=self.sqlite_database,
@@ -331,7 +331,7 @@ class SlowQuery(QtCore.QThread):
         sql: `SHOW TABLES`
 
     Methods:
-        run: An overridden method, which runs by calling the 
+        run: An overridden method, which runs by calling the
           start method on an instance of the QThread class.
 
     Signals:

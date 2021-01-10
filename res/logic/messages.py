@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 def warning(widget, title, message):
     "shows a warning"
     button = QtWidgets.QMessageBox.Ok
