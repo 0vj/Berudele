@@ -5,6 +5,7 @@
 Just clone the repository on your local system and run it.
 
     git clone https://github.com/ArefDev/Berudele.git
+    pip install -r requirements.txt
     python3 main.py
 After running the software, you'll see the following window, which asks you to supply some information for starting the process of transferring tables from a SQLite to MySQL database and vice versa.
 
